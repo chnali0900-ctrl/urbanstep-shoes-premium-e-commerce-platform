@@ -2,7 +2,7 @@ import { Hono } from "hono";
 import type { Env } from './core-utils';
 import { ProductEntity, OrderEntity } from "./entities";
 import { ok, bad, notFound, isStr } from './core-utils';
-import type { ShoeProduct, Order } from "@shared/types";
+import type { ShoeProduct, Order, OrderStatus } from "@shared/types";
 export function userRoutes(app: Hono<{ Bindings: Env }>) {
   // PRODUCTS
   app.get('/api/products', async (c) => {
@@ -12,8 +12,8 @@ export function userRoutes(app: Hono<{ Bindings: Env }>) {
     const category = c.req.query('category');
     const gender = c.req.query('gender');
     let { items, next } = await ProductEntity.list(
-      c.env, 
-      cursor ?? null, 
+      c.env,
+      cursor ?? null,
       limit ? Math.max(1, Number(limit)) : 100
     );
     if (category && category !== 'All') {
@@ -53,6 +53,8 @@ export function userRoutes(app: Hono<{ Bindings: Env }>) {
     const cursor = c.req.query('cursor');
     const limit = c.req.query('limit');
     const page = await OrderEntity.list(c.env, cursor ?? null, limit ? Number(limit) : 50);
+    // Sort orders by most recent
+    page.items.sort((a, b) => b.createdAt - a.createdAt);
     return ok(c, page);
   });
   app.post('/api/orders', async (c) => {
@@ -66,5 +68,14 @@ export function userRoutes(app: Hono<{ Bindings: Env }>) {
     };
     const order = await OrderEntity.create(c.env, newOrder);
     return ok(c, order);
+  });
+  app.patch('/api/orders/:id/status', async (c) => {
+    const id = c.req.param('id');
+    const { status } = await c.req.json() as { status: OrderStatus };
+    if (!status) return bad(c, 'Status required');
+    const order = new OrderEntity(c.env, id);
+    if (!await order.exists()) return notFound(c, 'Order not found');
+    await order.patch({ status });
+    return ok(c, await order.getState());
   });
 }
