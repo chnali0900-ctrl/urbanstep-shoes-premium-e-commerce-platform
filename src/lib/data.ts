@@ -1,16 +1,5 @@
-export interface Product {
-  id: string;
-  name: string;
-  price: number;
-  category: 'Sneakers' | 'Running' | 'Classic' | 'Outdoor';
-  gender: 'Men' | 'Women' | 'Unisex';
-  description: string;
-  images: string[];
-  sizes: number[];
-  featured?: boolean;
-  colors: string[];
-}
-export const PRODUCTS: Product[] = [
+import type { ShoeProduct, Category } from '@shared/types';
+export const PRODUCTS: ShoeProduct[] = [
   {
     id: '1',
     name: 'Urban Velocity X1',
@@ -81,4 +70,4 @@ export const PRODUCTS: Product[] = [
     colors: ['Multi', 'White']
   }
 ];
-export const CATEGORIES = ['All', 'Sneakers', 'Running', 'Classic', 'Outdoor'] as const;
+export const CATEGORIES: Category[] = ['Sneakers', 'Running', 'Classic', 'Outdoor'];

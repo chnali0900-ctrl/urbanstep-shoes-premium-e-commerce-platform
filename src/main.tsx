@@ -16,6 +16,8 @@ import { RootLayout } from '@/components/layout/RootLayout';
 import { HomePage } from '@/pages/HomePage';
 import { ShopPage } from '@/pages/ShopPage';
 import { ProductDetailPage } from '@/pages/ProductDetailPage';
+import { CheckoutPage } from '@/pages/CheckoutPage';
+import { AdminDashboard } from '@/pages/AdminDashboard';
 import { AboutPage, ContactPage, PrivacyPage } from '@/pages/StaticPages';
 import { Toaster } from '@/components/ui/sonner';
 const queryClient = new QueryClient();
@@ -25,32 +27,20 @@ const router = createBrowserRouter([
     element: <RootLayout />,
     errorElement: <RouteErrorBoundary />,
     children: [
-      {
-        index: true,
-        element: <HomePage />,
-      },
-      {
-        path: "shop",
-        element: <ShopPage />,
-      },
-      {
-        path: "product/:id",
-        element: <ProductDetailPage />,
-      },
-      {
-        path: "about",
-        element: <AboutPage />,
-      },
-      {
-        path: "contact",
-        element: <ContactPage />,
-      },
-      {
-        path: "privacy",
-        element: <PrivacyPage />,
-      },
+      { index: true, element: <HomePage /> },
+      { path: "shop", element: <ShopPage /> },
+      { path: "product/:id", element: <ProductDetailPage /> },
+      { path: "checkout", element: <CheckoutPage /> },
+      { path: "about", element: <AboutPage /> },
+      { path: "contact", element: <ContactPage /> },
+      { path: "privacy", element: <PrivacyPage /> },
     ],
   },
+  {
+    path: "/admin",
+    element: <AdminDashboard />,
+    errorElement: <RouteErrorBoundary />,
+  }
 ]);
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
