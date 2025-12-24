@@ -1,6 +1,6 @@
 # UrbanStep Shoes
 
-[cloudflarebutton]
+[![Deploy to Cloudflare](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/chnali0900-ctrl/urbanstep-shoes-premium-e-commerce-platform)
 
 A full-stack web application built with Cloudflare Workers, featuring a modern React frontend with shadcn/ui components, Tailwind CSS, and Durable Objects for scalable, multi-tenant data storage. This demo showcases users, chat boards, and real-time messaging with indexed entity listing, concurrent-safe mutations, and production-ready patterns.
 
@@ -108,7 +108,7 @@ bun run preview  # Local preview server
    - Assets served via SPA mode (single-page-application).
    - Durable Objects auto-migrate via `wrangler.jsonc`.
 
-[cloudflarebutton]
+[![Deploy to Cloudflare](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/chnali0900-ctrl/urbanstep-shoes-premium-e-commerce-platform)
 
 **Note**: Update `wrangler.jsonc` for custom domains/bindings. Preview deployments use your account's default zone.
 
