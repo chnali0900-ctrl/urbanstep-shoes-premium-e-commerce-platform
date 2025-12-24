@@ -4,7 +4,7 @@
  */
  {
 	"$schema": "node_modules/wrangler/config-schema.json",
-	"name": "vite-cf-do-runner",
+	"name": "urbanstep-shoes-ugq2epa5v0ovduo6en-e0",
 	"main": "worker/index.ts",
 	"compatibility_date": "2025-04-24",
 	"assets": {
