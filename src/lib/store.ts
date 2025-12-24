@@ -1,13 +1,13 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
-import type { ShoeProduct } from '@shared/types';
-export interface CartItem extends ShoeProduct {
+import { Product } from './data';
+interface CartItem extends Product {
   selectedSize: number;
   quantity: number;
 }
 interface CartStore {
   items: CartItem[];
-  addItem: (product: ShoeProduct, size: number) => void;
+  addItem: (product: Product, size: number) => void;
   removeItem: (productId: string, size: number) => void;
   updateQuantity: (productId: string, size: number, delta: number) => void;
   clearCart: () => void;

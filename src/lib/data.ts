@@ -1,5 +1,16 @@
-import type { ShoeProduct, Category } from '@shared/types';
-export const PRODUCTS: ShoeProduct[] = [
+export interface Product {
+  id: string;
+  name: string;
+  price: number;
+  category: 'Sneakers' | 'Running' | 'Classic' | 'Outdoor';
+  gender: 'Men' | 'Women' | 'Unisex';
+  description: string;
+  images: string[];
+  sizes: number[];
+  featured?: boolean;
+  colors: string[];
+}
+export const PRODUCTS: Product[] = [
   {
     id: '1',
     name: 'Urban Velocity X1',
@@ -70,4 +81,4 @@ export const PRODUCTS: ShoeProduct[] = [
     colors: ['Multi', 'White']
   }
 ];
-export const CATEGORIES: Category[] = ['Sneakers', 'Running', 'Classic', 'Outdoor'];
+export const CATEGORIES = ['All', 'Sneakers', 'Running', 'Classic', 'Outdoor'] as const;
